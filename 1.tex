@@ -1,0 +1,752 @@
+% Created 2023-05-02 Tue 10:11
+% Intended LaTeX compiler: pdflatex
+\documentclass[14pt]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage[russian]{babel}
+\usepackage{tempora}
+\usepackage{geometry}
+\geometry{a4paper, left=30mm, top=20mm, bottom=20mm, right=15mm }
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{titlesec}
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\titleformat*{\subsubsection}{\normalsize\bfseries}
+\addto\captionsrussian{\renewcommand{\contentsname}{\centering \normalsize СОДЕРЖАНИЕ}}
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\usepackage{titletoc}
+\titlecontents{section}[0pt]{}{\contentsmargin{0pt} \thecontentslabel\enspace}{\contentsmargin{0pt}}{\titlerule*[0.5pc]{.}\contentspage}[]
+\dottedcontents{subsection}[3.1em]{}{1.5em}{0.5pc}
+\usepackage{caption}
+\DeclareCaptionLabelSeparator{custom}{ -- }
+\captionsetup[figure]{name=Рисунок, labelsep=custom, font={onehalfspacing}, justification=centering}
+\usepackage{ragged2e}
+\justifying
+\setlength\parindent{1.25cm}
+\sloppy
+\usepackage{indentfirst}
+\usepackage{multirow}
+\usepackage{lscape}
+\renewcommand{\labelitemi}{\textsc{--}}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 30.0.50 (Org mode 9.6.2)}, 
+ pdflang={Russian}}
+
+% Setup for code blocks [1/2]
+
+\usepackage{fvextra}
+
+\fvset{%
+  commandchars=\\\{\},
+  highlightcolor=white!95!black!80!blue,
+  breaklines=true,
+  breaksymbol=\color{white!60!black}\tiny\ensuremath{\hookrightarrow}}
+
+% Make line numbers smaller and grey.
+\renewcommand\theFancyVerbLine{\footnotesize\color{black!40!white}\arabic{FancyVerbLine}}
+
+\usepackage{xcolor}
+
+% In case engrave-faces-latex-gen-preamble has not been run.
+\providecolor{EfD}{HTML}{f7f7f7}
+\providecolor{EFD}{HTML}{28292e}
+
+% Define a Code environment to prettily wrap the fontified code.
+\usepackage[breakable,xparse]{tcolorbox}
+\DeclareTColorBox[]{Code}{o}%
+{colback=EfD!98!EFD, colframe=EfD!95!EFD,
+  fontupper=\footnotesize\setlength{\fboxsep}{0pt},
+  colupper=EFD,
+  IfNoValueTF={#1}%
+  {boxsep=2pt, arc=2.5pt, outer arc=2.5pt,
+    boxrule=0.5pt, left=2pt}%
+  {boxsep=2.5pt, arc=0pt, outer arc=0pt,
+    boxrule=0pt, leftrule=1.5pt, left=0.5pt},
+  right=2pt, top=1pt, bottom=0.5pt,
+  breakable}
+
+% Support listings with captions
+\usepackage{float}
+\floatstyle{plain}
+\newfloat{listing}{htbp}{lst}
+\newcommand{\listingsname}{Listing}
+\floatname{listing}{\listingsname}
+\newcommand{\listoflistingsname}{List of Listings}
+\providecommand{\listoflistings}{\listof{listing}{\listoflistingsname}}
+
+
+% Setup for code blocks [2/2]: syntax highlighting colors
+
+\newcommand\efstrut{\vrule height 2.1ex depth 0.8ex width 0pt}
+\definecolor{EFD}{HTML}{212121}
+\definecolor{EfD}{HTML}{FAFAFA}
+\newcommand{\EFD}[1]{\textcolor{EFD}{#1}} % default
+\definecolor{EFh}{HTML}{607d8b}
+\newcommand{\EFh}[1]{\textcolor{EFh}{#1}} % shadow
+\definecolor{EFsc}{HTML}{4eee94}
+\newcommand{\EFsc}[1]{\textcolor{EFsc}{#1}} % success
+\definecolor{EFw}{HTML}{FF5722}
+\newcommand{\EFw}[1]{\textcolor{EFw}{#1}} % warning
+\definecolor{EFe}{HTML}{B71C1C}
+\newcommand{\EFe}[1]{\textcolor{EFe}{#1}} % error
+\definecolor{EFc}{HTML}{607d8b}
+\newcommand{\EFc}[1]{\textcolor{EFc}{#1}} % font-lock-comment-face
+\definecolor{EFcd}{HTML}{607d8b}
+\newcommand{\EFcd}[1]{\textcolor{EFcd}{#1}} % font-lock-comment-delimiter-face
+\definecolor{EFs}{HTML}{689f38}
+\newcommand{\EFs}[1]{\textcolor{EFs}{#1}} % font-lock-string-face
+\definecolor{EFd}{HTML}{673ab7}
+\newcommand{\EFd}[1]{\textcolor{EFd}{#1}} % font-lock-doc-face
+\definecolor{EFm}{HTML}{558b2f}
+\newcommand{\EFm}[1]{\textcolor{EFm}{#1}} % font-lock-doc-markup-face
+\definecolor{EFk}{HTML}{00796b}
+\newcommand{\EFk}[1]{\textcolor{EFk}{#1}} % font-lock-keyword-face
+\definecolor{EFb}{HTML}{B71C1C}
+\newcommand{\EFb}[1]{\textcolor{EFb}{#1}} % font-lock-builtin-face
+\definecolor{EFf}{HTML}{0097A7}
+\newcommand{\EFf}[1]{\textcolor{EFf}{#1}} % font-lock-function-name-face
+\definecolor{EFv}{HTML}{EF6C00}
+\newcommand{\EFv}[1]{\textcolor{EFv}{#1}} % font-lock-variable-name-face
+\definecolor{EFt}{HTML}{0097A7}
+\newcommand{\EFt}[1]{\textcolor{EFt}{#1}} % font-lock-type-face
+\definecolor{EFo}{HTML}{558b2f}
+\newcommand{\EFo}[1]{\textcolor{EFo}{#1}} % font-lock-constant-face
+\definecolor{EFwr}{HTML}{B71C1C}
+\newcommand{\EFwr}[1]{\textcolor{EFwr}{\textbf{#1}}} % font-lock-warning-face
+\definecolor{EFnc}{HTML}{2196f3}
+\newcommand{\EFnc}[1]{\textcolor{EFnc}{#1}} % font-lock-negation-char-face
+\definecolor{EFpp}{HTML}{FFA000}
+\newcommand{\EFpp}[1]{\textcolor{EFpp}{#1}} % font-lock-preprocessor-face
+\definecolor{EFrc}{HTML}{4527A0}
+\newcommand{\EFrc}[1]{\textcolor{EFrc}{#1}} % font-lock-regexp-grouping-construct
+\definecolor{EFrb}{HTML}{FFA000}
+\newcommand{\EFrb}[1]{\textcolor{EFrb}{#1}} % font-lock-regexp-grouping-backslash
+\definecolor{Efob}{HTML}{EFEBE9}
+\newcommand{\EFob}[1]{\colorbox{Efob}{\efstrut{}#1}} % org-block
+\newcommand{\EFhn}[1]{#1} % highlight-numbers-number
+\newcommand{\EFhq}[1]{#1} % highlight-quoted-quote
+\newcommand{\EFhs}[1]{#1} % highlight-quoted-symbol
+\newcommand{\EFrda}[1]{#1} % rainbow-delimiters-depth-1-face
+\newcommand{\EFrdb}[1]{#1} % rainbow-delimiters-depth-2-face
+\newcommand{\EFrdc}[1]{#1} % rainbow-delimiters-depth-3-face
+\newcommand{\EFrdd}[1]{#1} % rainbow-delimiters-depth-4-face
+\newcommand{\EFrde}[1]{#1} % rainbow-delimiters-depth-5-face
+\newcommand{\EFrdf}[1]{#1} % rainbow-delimiters-depth-6-face
+\newcommand{\EFrdg}[1]{#1} % rainbow-delimiters-depth-7-face
+\newcommand{\EFrdh}[1]{#1} % rainbow-delimiters-depth-8-face
+\newcommand{\EFrdi}[1]{#1} % rainbow-delimiters-depth-9-face
+\begin{document}
+
+В системе будут использоваться четыре пользователя:
+\begin{itemize}
+\item web\_​anon - гость, который может просматривать все таблицы в публичном доступе (scheme public):
+
+\begin{itemize}
+\item collection
+
+\item age
+
+\item family
+
+\item sex
+
+\item country
+
+\item voucher\_​institute
+
+\item region
+
+\item genus
+
+\item collector\_​to\_​collection
+
+\item order
+
+\item collector
+
+\item subregion
+
+\item kind
+
+\item collection
+\end{itemize}
+
+\item lab\_​worker - работник лаборатории, имеет те же привелегии, что и web\_​anon,
+но также может добавлять и изменять любые таблицы в публичном доступе (scheme public), а также функции добавления и изменения записей в таблице collection.
+
+\item head\_​lab - заведующий лабораторией, имеет те же привелегии, что и lab\_​worker,
+но также может выполнять все функции в публичном доступе (scheme public) и
+все процедуры в авторизации (scheme auth), что позволяет ему:
+
+\begin{itemize}
+\item добавлять пользователя
+
+\item удалять пользователя
+
+\item изменять пользователя
+\end{itemize}
+
+\item database\_​admin - администратор базы данных обладает всеми привелегиями на обе схемы(auth и public)
+\end{itemize}
+
+
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFcd{-- }\EFc{Настройка web\_anon - роль для гостей}
+\EFk{create} \EFk{role} web\_anon nologin;
+\EFk{grant} \EFk{usage} \EFk{on} \EFk{schema} \EFk{public} \EFk{to} web\_anon;
+\EFk{grant} \EFk{select} \EFk{on} \EFk{all} tables \EFk{in} \EFk{schema} \EFk{public} \EFk{to} web\_anon;
+\EFk{grant} \EFk{execute} \EFk{on} \EFk{function} \EFk{public}.login(text, text) \EFk{to} web\_anon;
+
+\EFcd{-- }\EFc{работник лаборатории, может выполнять процедуры, что позволяет ему изменять базу данных}
+\EFk{create} \EFb{user} lab\_worker;
+\EFk{grant} web\_anon \EFk{to} lab\_worker;
+\EFk{grant} \EFk{USAGE}, \EFk{SELECT} \EFk{ON} \EFk{ALL} SEQUENCES \EFk{IN} \EFk{SCHEMA} \EFk{public} \EFk{to} lab\_worker;
+\EFk{grant} \EFk{execute} \EFk{on} \EFk{function} add\_collection(text, text, \EFt{varchar}, \EFt{varchar}, \EFt{varchar}, \EFt{varchar}, \EFt{varchar}, text, text, text,
+                                    geography, text, text, text, text, \EFt{date}, text, text[], \EFt{boolean}) \EFk{TO} lab\_worker;
+\EFk{grant} \EFk{execute} \EFk{on} \EFk{function} update\_collection\_by\_id(\EFt{int}, text, text, \EFt{varchar}, \EFt{varchar}, \EFt{varchar}, \EFt{varchar}, \EFt{varchar}, text, text, text,
+                                    geography, text, text, text, text, \EFt{date}, text, text[], \EFt{boolean}) \EFk{TO} lab\_worker;
+\EFk{grant} \EFk{insert}, \EFk{update} \EFk{on} \EFk{all} tables \EFk{in} \EFk{schema} \EFk{public} \EFk{to} lab\_worker;
+\EFk{revoke} \EFk{delete} \EFk{on} \EFk{all} tables \EFk{in} \EFk{schema} \EFk{public} \EFk{from} lab\_worker;
+\EFk{REVOKE} \EFk{execute} \EFk{on} \EFk{function} remove\_collection\_by\_id(\EFt{int}) \EFk{FROM} lab\_worker;
+
+
+
+\EFcd{-- }\EFc{зав. лабораторией}
+\EFk{create} \EFb{user} head\_lab;
+\EFk{grant} lab\_worker \EFk{to} head\_lab;
+\EFk{grant} \EFk{execute} \EFk{on} \EFk{all} functions \EFk{in} \EFk{schema} \EFk{public} \EFk{to} head\_lab;
+\EFk{grant} \EFk{usage} \EFk{on} \EFk{schema} auth \EFk{to} head\_lab;
+\EFk{grant} \EFk{insert}, \EFk{update}, \EFk{delete}, \EFk{select} \EFk{on} \EFk{all} tables \EFk{in} \EFk{schema} \EFk{public} \EFk{to} head\_lab;
+\EFk{grant} \EFk{insert}, \EFk{update}, \EFk{delete}, \EFk{select} \EFk{on} \EFk{all} tables \EFk{in} \EFk{schema} auth \EFk{to} head\_lab;
+
+\EFcd{-- }\EFc{администратор бд - очень доверенное лицо, которое будет уверено в своих запросах}
+\EFk{create} \EFb{user} database\_admin;
+\EFk{grant} \EFk{all} \EFk{privileges} \EFk{on} \EFk{schema} \EFk{public} \EFk{to} database\_admin;
+\EFk{grant} \EFk{all} \EFk{privileges} \EFk{on} \EFk{schema} auth \EFk{to} database\_admin;
+
+\end{Verbatim}
+\end{Code}
+
+
+Также дополнительно реализована роль аутентификатор(authenticator),
+у этой роли есть права всех пользователей, выше, благодоря этому
+модуль postgres реализовывает распределение ролями.
+
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFk{create} \EFk{role} authenticator noinherit login password \EFs{'abobapass'};
+\EFk{grant} web\_anon \EFk{to} authenticator;
+\EFk{grant} lab\_worker \EFk{to} authenticator;
+\EFk{grant} head\_lab \EFk{to} authenticator;
+\end{Verbatim}
+\end{Code}
+
+\section{Авторизация}
+\label{sec:orge4a5261}
+
+Для авторизации была реализована отдельная таблица users в схеме auth,
+код которой приведён ниже:
+
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFk{create} \EFk{table} \EFf{if} \EFk{not} \EFk{exists}
+    auth.users
+(
+    email text \EFk{primary} \EFk{key} \EFk{check} ( email \char126{}* \EFs{'\char94{}.+@.+\char92{}..+\$'} ),
+    pass  text \EFk{not} \EFk{null} \EFk{check} (\EFk{length}(pass) < 512),
+    \EFk{role}  \EFk{name} \EFk{not} \EFk{null} \EFk{check} (\EFk{length}(\EFk{role}) < 512)
+);
+\end{Verbatim}
+\end{Code}
+
+Реализован триггер, который проверяет,
+существует ли роль, которую мы хотим записать.
+
+
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFk{create} \EFk{or} replace \EFk{function}
+    auth.check\_role\_exists() \EFk{returns} \EFk{trigger} \EFk{as}
+\$\$
+\EFk{begin}
+    if \EFk{not} \EFk{exists} (\EFk{select} 1 \EFk{from} pg\_roles \EFk{as} r \EFk{where} r.rolname = \EFk{new}.\EFk{role}) \EFk{then}
+        raise foreign\_key\_violation \EFk{using} message =
+                    \EFs{'unknown database role: '} || \EFk{new}.\EFk{role};
+        \EFcd{-- }\EFc{return null;}
+    \EFk{end} if;
+    \EFk{return} \EFk{new};
+\EFk{end}
+\$\$ \EFk{language} plpgsql;
+
+\EFk{drop} \EFk{trigger} \EFf{if} \EFk{exists} ensure\_user\_role\_exists \EFk{on} auth.users;
+\EFk{create} \EFk{constraint} \EFk{trigger} \EFf{ensure\_user\_role\_exists}
+    \EFk{after} \EFk{insert} \EFk{or} \EFk{update}
+    \EFk{on} auth.users
+    \EFk{for} \EFk{each} \EFt{row}
+\EFk{execute} \EFk{procedure} auth.check\_role\_exists();
+\end{Verbatim}
+\end{Code}
+
+
+Также реализован триггер шифрования паролей, он использует расширение pgcrypto, а
+именно функции:
+\begin{itemize}
+\item crypt - функция, которая шифрует строку с солью,
+собственным алгоритмом, который работает быстрее и безопаснее,
+чем алгоритмы sha-1 и md-5, но при этом основывается на них;
+
+Также данная функция поддерживает проверку пароля не расскрывая соль, которая использовалася при генерации,
+что обеспечивает дополнительную безопасность.
+\item gen\_​salt - функция, которая генерирует соль и указывает основной алгоритм шифрования данных.
+\end{itemize}
+
+
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFk{create} \EFk{or} replace \EFk{function}
+    auth.encrypt\_pass() \EFk{returns} \EFk{trigger} \EFk{as}
+\$\$
+\EFk{begin}
+    if tg\_op = \EFs{'INSERT'} \EFk{or} \EFk{new}.pass <> \EFk{old}.pass \EFk{then}
+        \EFk{new}.pass = crypt(\EFk{new}.pass, gen\_salt(\EFs{'bf'}));
+    \EFk{end} if;
+    \EFk{return} \EFk{new};
+\EFk{end}
+\$\$ \EFk{language} plpgsql;
+
+\EFk{drop} \EFk{trigger} \EFf{if} \EFk{exists} encrypt\_pass \EFk{on} auth.users;
+\EFk{create} \EFk{trigger} \EFf{encrypt\_pass}
+    \EFk{before} \EFk{insert} \EFk{or} \EFk{update}
+    \EFk{on} auth.users
+    \EFk{for} \EFk{each} \EFt{row}
+\EFk{execute} \EFk{procedure} auth.encrypt\_pass();
+\end{Verbatim}
+\end{Code}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.9\linewidth]{images/2023-05-02_09-57-33_screenshot.png}
+\caption{Демонстрация хеширования}
+\end{figure}
+
+
+Реализована функция получение роли по почте и паролю:
+
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFk{create} \EFk{or} replace \EFk{function}
+    auth.user\_role(email text, pass text) \EFk{returns} \EFk{name}
+    \EFk{language} plpgsql
+\EFk{as}
+\$\$
+\EFk{begin}
+    \EFk{return} (\EFk{select} \EFk{role}
+            \EFk{from} auth.users
+            \EFk{where} users.email = user\_role.email
+              \EFk{and} users.pass = crypt(user\_role.pass, users.pass));
+\EFk{end};
+\$\$;
+\end{Verbatim}
+\end{Code}
+
+
+И безопасная функция, которой будет пользоваться postgrest для получения jwt-токена:
+
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFk{CREATE} \EFk{TYPE} \EFf{auth.jwt\_token} \EFk{AS}
+(
+    token text
+);
+
+\EFk{create} extension if \EFk{not} \EFk{exists} pgjwt;
+
+
+\EFk{ALTER} DATABASE lab\_base \EFk{SET} "app.jwt\_secret" \EFk{TO} \EFs{'Q5He86xPvYscMiZxQw29gy8YkbD7a4aMDH1hQFP'};
+
+
+\EFcd{-- }\EFc{функция авторизации, для анонимного пользователя нужно только выполненные функций}
+\EFk{create} \EFk{or} replace \EFk{function}
+    \EFk{public}.login(email text, pass text) \EFk{returns} auth.jwt\_token \EFk{as}
+\$\$
+\EFk{declare}
+    \_role  \EFk{name};
+    \EFk{result} auth.jwt\_token;
+\EFk{begin}
+    \EFcd{-- }\EFc{check email and password}
+    \EFk{select} auth.user\_role(email, pass) \EFk{into} \_role;
+    if \_role \EFk{is} \EFk{null} \EFk{then}
+        raise invalid\_password \EFk{using} message = \EFs{'invalid user or password'};
+    \EFk{end} if;
+    \EFcd{-- }\EFc{НЕ КОМУ НЕ СООБЩАТЬ КОД, НЕ ХРАНИТЬ ЕГО В ОТКРЫТЫХ ПЕРЕМЕННЫХ}
+    \EFk{select} sign(
+                   row\_to\_json(r), current\_setting(\EFs{'app.jwt\_secret'})
+               ) \EFk{as} token
+    \EFk{from} (\EFk{select} \_role                                        \EFk{as} \EFk{role},
+                 \$1                                           \EFk{as} email,
+                 \EFb{extract}(epoch \EFk{from} now())::\EFt{integer} + 60 * 60 \EFk{as} exp) r
+    \EFk{into} \EFk{result};
+    \EFk{return} \EFk{result};
+\EFk{end};
+\$\$ \EFk{language} plpgsql \EFk{security} \EFk{definer};
+\end{Verbatim}
+\end{Code}
+
+
+
+
+Настройки postgrest:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFv{db-uri} = \EFs{"postgres://authenticator:abobapass@localhost:5432/lab\_base"}
+\EFv{db-schemas} = \EFs{"public"}
+\EFv{db-anon-role} = \EFs{"web\_anon"}
+
+\EFv{jwt-secret} = \EFs{"Q5He86xPvYscMiZxQw29gy8YkbD7a4aMDH1hQFP"}
+
+\end{Verbatim}
+\end{Code}
+
+\section{Демонстрация работы}
+\label{sec:orge00c008}
+
+\subsection{web\_​anon}
+\label{sec:org2c745ff}
+
+Получение записи по id=1 в коллекции
+
+HTTP Запрос:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFo{GET} http\EFc{:}//localhost\EFc{:}3000/collection\EFc{?}\EFv{id}\EFc{=}\EFs{eq.1}
+\end{Verbatim}
+\end{Code}
+
+Аналогичный SQL запрос
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFk{SELECT} * \EFk{FROM} collection \EFk{WHERE} id = 1;
+\end{Verbatim}
+\end{Code}
+
+
+Результат выполнения:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}[
+  \{
+    \EFk{"id"}: \EFo{1},
+    \EFk{"CatalogueNumber"}: \EFs{"ZIN-TER-M-55"},
+    \EFk{"collect\_id"}: \EFs{"1"},
+    \EFk{"kind\_id"}: \EFo{1},
+    \EFk{"subregion\_id"}: \EFo{1},
+    \EFk{"gen\_bank\_id"}: \EFo{null},
+    \EFk{"point"}: \EFs{"0101000020E6100000CACDE459D130554008D8BBFD41264940"},
+    \EFk{"vouch\_inst\_id"}: \EFo{1},
+    \EFk{"vouch\_id"}: \EFs{"91130"},
+    \EFk{"rna"}: \EFo{false},
+    \EFk{"sex\_id"}: \EFo{2},
+    \EFk{"age\_id"}: \EFo{3},
+    \EFk{"day"}: \EFo{12},
+    \EFk{"month"}: \EFo{6},
+    \EFk{"year"}: \EFo{2005},
+    \EFk{"comment"}: \EFs{"По сиквенсам со1 и цитохрома -  красно-серая, первоначально  определена как красная JF713496"},
+    \EFk{"geo\_comment"}: \EFs{"Алтай, Республика, Усть-Коксинский р-он, Банное, село, р. Колчулу"}
+  \}
+]
+\end{Verbatim}
+\end{Code}
+
+Попытка добавить в age запись:
+
+HTTP запрос:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFo{POST} \EFf{http://localhost:3000/age}
+\EFv{Content-Type}\EFc{:} \EFs{application/json}
+\EFc{\{}\EFs{"name"}\EFc{:} \EFs{"test age"}\EFc{\}}
+\end{Verbatim}
+\end{Code}
+
+
+Ответ:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\{
+  \EFk{"code"}: \EFs{"42501"},
+  \EFk{"details"}: \EFo{null},
+  \EFk{"hint"}: \EFo{null},
+  \EFk{"message"}: \EFs{"нет доступа к таблице age"}
+\}
+\end{Verbatim}
+\end{Code}
+
+
+Демоннстрация, что age - доступна:
+
+HTTP запрос:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFo{GET} \EFf{http://localhost:3000/age}
+\end{Verbatim}
+\end{Code}
+
+
+Ответ:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}[
+  \{
+    \EFk{"id"}: \EFo{0},
+    \EFk{"name"}: \EFs{"Unknown"}
+  \},
+  \{
+    \EFk{"id"}: \EFo{2},
+    \EFk{"name"}: \EFs{"subadult"}
+  \},
+  \{
+    \EFk{"id"}: \EFo{3},
+    \EFk{"name"}: \EFs{"adult"}
+  \},
+  \{
+    \EFk{"id"}: \EFo{1},
+    \EFk{"name"}: \EFs{"juvenile"}
+  \},
+  \{
+    \EFk{"id"}: \EFo{4},
+    \EFk{"name"}: \EFs{"subadult or adult"}
+  \},
+  \{
+    \EFk{"id"}: \EFo{19},
+    \EFk{"name"}: \EFs{"test"}
+  \}
+]
+\end{Verbatim}
+\end{Code}
+
+
+\subsection{lab\_​worker}
+\label{sec:org0885b0a}
+
+Добавление тестового пользователя c ролью lab\_​worker в таблицу users:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFk{INSERT} \EFk{INTO} auth.users(email, pass, \EFk{role}) \EFk{VALUES} (\EFs{'test@test.com'}, \EFs{'test'}, \EFs{'lab\_worker'});
+\end{Verbatim}
+\end{Code}
+
+
+Демонстрация авторизации:
+
+
+Хороший пароль
+
+HTTP запрс:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFo{POST} \EFf{http://localhost:3000/rpc/login}
+\EFv{Content-Type}\EFc{:} \EFs{application/json}
+
+\EFc{\{}\EFs{"email"}\EFc{:} \EFs{"test@test.com"}\EFc{,} \EFs{"pass"}\EFc{:}\EFs{"test"}\EFc{\}}
+\end{Verbatim}
+\end{Code}
+
+
+Ответ:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\{
+  \EFk{"token"}: \EFs{"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoibGFiX3dvcmtlciIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImV4cCI6MTY4Mjc3MjEyN30.cI4CN4iIeOPw-jsMLSLF3NrtDPSYsCfm9M1EPbaqHbw"}
+\}
+\end{Verbatim}
+\end{Code}
+
+Плохой пароль
+
+
+HTTP запрос:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFo{POST} \EFf{http://localhost:3000/rpc/login}
+\EFv{Content-Type}\EFc{:} \EFs{application/json}
+
+\EFc{\{}\EFs{"email"}\EFc{:} \EFs{"test@test.com"}\EFc{,} \EFs{"pass"}\EFc{:}\EFs{"я плохой пароль"}\EFc{\}}
+\end{Verbatim}
+\end{Code}
+
+Ответ
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\{
+  \EFk{"code"}: \EFs{"28P01"},
+  \EFk{"details"}: \EFo{null},
+  \EFk{"hint"}: \EFo{null},
+  \EFk{"message"}: \EFs{"invalid user or password"}
+\}
+\end{Verbatim}
+\end{Code}
+
+
+Добавление записи за lab\_​worker:
+
+HTTP запрос:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFo{POST} \EFf{http://localhost:3000/rpc/add\_collection}
+\EFv{Authorization}\EFc{:} \EFs{Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoibGFiX3dvcmtlciIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImV4cCI6MTY4Mjk1MzU3MX0.IKV4EPcylqRBEoumGboCXfegJJ9bMHsyXngEy1I84I4}
+\EFv{Content-Type}\EFc{:} \EFs{application/json}
+
+\EFc{\{} \EFs{"catalog\_number"}\EFc{:} \EFs{"test"}\EFc{,} \EFs{"collect\_id"}\EFc{:} \EFs{"test"}\EFc{,} \EFs{"order"} \EFc{:} \EFs{"test"}\EFc{,} \EFs{"family"} \EFc{:} \EFs{"test"}\EFc{,}
+                    \EFs{"genus"} \EFc{:} \EFs{"test"}\EFc{,} \EFs{"kind"} \EFc{:} \EFs{"test"}\EFc{,} \EFs{"age"} \EFc{:} \EFs{"test"}\EFc{,} \EFs{"sex"} \EFc{:} \EFs{"test"}\EFc{,} \EFs{"vauch\_inst"} \EFc{:} \EFs{"test"}\EFc{,}
+                    \EFs{"vauch\_id"} \EFc{:} \EFs{"test"}\EFc{,} \EFs{"point"} \EFc{:} \EFs{"POINT(0 0)"}\EFc{,} \EFs{"country"} \EFc{:} \EFs{"test"}\EFc{,} \EFs{"region"} \EFc{:} \EFs{"test"}\EFc{,} \EFs{"subregion"} \EFc{:} \EFs{"test"}\EFc{,}
+                    \EFs{"geocomment"}\EFc{:} \EFs{"test"}\EFc{,} \EFs{"date\_collect"} \EFc{:} \EFs{"2004-4-4"}\EFc{,} \EFs{"comment"} \EFc{:} \EFs{"Это тестовая запись"}\EFc{,}
+                    \EFs{"collectors"} \EFc{:} \EFs{"\{\{\char92{}"Панков\char92{}", \char92{}"\char92{}", \char92{}"\char92{}" \}, \{\char92{}"Турсунова\char92{}", \char92{}"\char92{}", \char92{}"\char92{}"\}\}"}\EFc{\}}
+\end{Verbatim}
+\end{Code}
+
+Ответ пустой.
+
+Проверка, что запись добавилась:
+
+HTTP запрос:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFo{GET} http\EFc{:}//localhost\EFc{:}3000/collection\EFc{?}\EFv{id}\EFc{=}\EFs{eq.6081}
+\end{Verbatim}
+\end{Code}
+
+
+Ответ:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}[
+  \{
+    \EFk{"id"}: \EFo{6081},
+    \EFk{"CatalogueNumber"}: \EFs{"test"},
+    \EFk{"collect\_id"}: \EFs{"test"},
+    \EFk{"kind\_id"}: \EFo{270},
+    \EFk{"subregion\_id"}: \EFo{154},
+    \EFk{"gen\_bank\_id"}: \EFo{null},
+    \EFk{"point"}: \EFs{"0101000020E610000000000000000000000000000000000000"},
+    \EFk{"vouch\_inst\_id"}: \EFo{46},
+    \EFk{"vouch\_id"}: \EFs{"test"},
+    \EFk{"rna"}: \EFo{false},
+    \EFk{"sex\_id"}: \EFo{18},
+    \EFk{"age\_id"}: \EFo{19},
+    \EFk{"day"}: \EFo{4},
+    \EFk{"month"}: \EFo{4},
+    \EFk{"year"}: \EFo{2004},
+    \EFk{"comment"}: \EFs{"Это тестовая запись"},
+    \EFk{"geo\_comment"}: \EFs{"test"}
+  \}
+]
+\end{Verbatim}
+\end{Code}
+
+Попытка удаления записи:
+
+HTTP запрос:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFo{POST} \EFf{http://localhost:3000/rpc/remove\_collection\_by\_id}
+\EFv{Authorization}\EFc{:} \EFs{Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoibGFiX3dvcmtlciIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImV4cCI6MTY4Mjk1NzI1N30.YaqxuxgQeeZPTQBppSYg154FDUPlrTh8WhgDvgEd5sQ}
+\EFv{Content-Type}\EFc{:} \EFs{application/json}
+
+\EFc{\{}\EFs{"col\_id"}\EFc{:} 6081\EFc{\}}
+
+\end{Verbatim}
+\end{Code}
+
+Ответ:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\{
+  \EFk{"code"}: \EFs{"42501"},
+  \EFk{"details"}: \EFo{null},
+  \EFk{"hint"}: \EFo{null},
+  \EFk{"message"}: \EFs{"нет доступа к таблице collection"}
+\}
+\end{Verbatim}
+\end{Code}
+
+
+\subsection{head\_​lab}
+\label{sec:org8559e1c}
+
+
+Добавление тестового пользователя c ролью lab\_​worker в таблицу users:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFk{INSERT} \EFk{INTO} auth.users(email, pass, \EFk{role}) \EFk{VALUES} (\EFs{'test2@test.com'}, \EFs{'test'}, \EFs{'head\_lab'});
+\end{Verbatim}
+\end{Code}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.9\linewidth]{images/2023-05-01_18-24-03_screenshot.png}
+\caption{Авторизация}
+\end{figure}
+
+
+Попытка удаления
+
+HTTP запрос:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFo{POST} \EFf{http://localhost:3000/rpc/remove\_collection\_by\_id}
+\EFv{Authorization}\EFc{:} \EFs{Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiaGVhZF9sYWIiLCJlbWFpbCI6InRlc3QyQHRlc3QuY29tIiwiZXhwIjoxNjgyOTU4MjA3fQ.mkzS0XwjVWW\_yook7JUPx3UyypScqrWh9mkKCmWWAN0}
+\EFv{Content-Type}\EFc{:} \EFs{application/json}
+
+\EFc{\{}\EFs{"col\_id"}\EFc{:} 6081\EFc{\}}
+\end{Verbatim}
+\end{Code}
+
+Ответ
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}<Response body is empty>
+\end{Verbatim}
+\end{Code}
+
+Демонстрация, что запись удалена:
+
+HTTP запрос:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}\EFo{GET} http\EFc{:}//localhost\EFc{:}3000/collection\EFc{?}\EFv{id}\EFc{=}\EFs{eq.6081}
+\end{Verbatim}
+\end{Code}
+
+Ответ:
+\begin{Code}
+\begin{Verbatim}
+\color{EFD}[]
+\end{Verbatim}
+\end{Code}
+
+Вывод: запись удалена
+\end{document}
