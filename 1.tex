@@ -1,4 +1,4 @@
-% Created 2023-05-02 Tue 10:11
+% Created 2023-05-02 Tue 10:24
 % Intended LaTeX compiler: pdflatex
 \documentclass[14pt]{extarticle}
 \usepackage[utf8]{inputenc}
@@ -164,51 +164,51 @@
 \item web\_​anon - гость, который может просматривать все таблицы в публичном доступе (scheme public):
 
 \begin{itemize}
-\item collection
+\item collection;
 
-\item age
+\item age;
 
-\item family
+\item family;
 
-\item sex
+\item sex;
 
-\item country
+\item country;
 
-\item voucher\_​institute
+\item voucher\_​institute;
 
-\item region
+\item region;
 
-\item genus
+\item genus;
 
-\item collector\_​to\_​collection
+\item collector\_​to\_​collection;
 
-\item order
+\item order;
 
-\item collector
+\item collector;
 
-\item subregion
+\item subregion;
 
-\item kind
+\item kind;
 
-\item collection
+\item collection;
 \end{itemize}
 
 \item lab\_​worker - работник лаборатории, имеет те же привелегии, что и web\_​anon,
-но также может добавлять и изменять любые таблицы в публичном доступе (scheme public), а также функции добавления и изменения записей в таблице collection.
+но также может добавлять и изменять любые таблицы в публичном доступе (scheme public), а также функции добавления и изменения записей в таблице collection;
 
 \item head\_​lab - заведующий лабораторией, имеет те же привелегии, что и lab\_​worker,
 но также может выполнять все функции в публичном доступе (scheme public) и
 все процедуры в авторизации (scheme auth), что позволяет ему:
 
 \begin{itemize}
-\item добавлять пользователя
+\item добавлять пользователя;
 
-\item удалять пользователя
+\item удалять пользователя;
 
-\item изменять пользователя
+\item изменять пользователя;
 \end{itemize}
 
-\item database\_​admin - администратор базы данных обладает всеми привелегиями на обе схемы(auth и public)
+\item database\_​admin - администратор базы данных обладает всеми привелегиями на обе схемы (auth и public).
 \end{itemize}
 
 
@@ -265,7 +265,7 @@
 \end{Code}
 
 \section{Авторизация}
-\label{sec:orge4a5261}
+\label{sec:org3d4b7e5}
 
 Для авторизации была реализована отдельная таблица users в схеме auth,
 код которой приведён ниже:
@@ -316,13 +316,14 @@
 \begin{itemize}
 \item crypt - функция, которая шифрует строку с солью,
 собственным алгоритмом, который работает быстрее и безопаснее,
-чем алгоритмы sha-1 и md-5, но при этом основывается на них;
+чем алгоритмы sha-1 и md-5, но при этом основывается на них.
 
 Также данная функция поддерживает проверку пароля не расскрывая соль, которая использовалася при генерации,
-что обеспечивает дополнительную безопасность.
+что обеспечивает дополнительную безопасность;
 \item gen\_​salt - функция, которая генерирует соль и указывает основной алгоритм шифрования данных.
 \end{itemize}
 
+\href{https://www.postgresql.org/docs/current/pgcrypto.html}{Источник}
 
 \begin{Code}
 \begin{Verbatim}
@@ -431,10 +432,10 @@
 \end{Code}
 
 \section{Демонстрация работы}
-\label{sec:orge00c008}
+\label{sec:org659a900}
 
 \subsection{web\_​anon}
-\label{sec:org2c745ff}
+\label{sec:orga3dd3c7}
 
 Получение записи по id=1 в коллекции
 
@@ -549,7 +550,7 @@ HTTP запрос:
 
 
 \subsection{lab\_​worker}
-\label{sec:org0885b0a}
+\label{sec:org7bc2f68}
 
 Добавление тестового пользователя c ролью lab\_​worker в таблицу users:
 \begin{Code}
@@ -694,7 +695,7 @@ HTTP запрос:
 
 
 \subsection{head\_​lab}
-\label{sec:org8559e1c}
+\label{sec:org7304be1}
 
 
 Добавление тестового пользователя c ролью lab\_​worker в таблицу users:
